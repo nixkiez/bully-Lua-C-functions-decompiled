@@ -3,7 +3,7 @@
 #include <Clock.h>
 
 
-int MissionTimerStart(lua_State *lua)
+int cmdMissionTimerStart(lua_State *lua)
 {
   int timer = LuaParam::GetInt(lua, 0);
   ObjectiveSystem::SetObjectiveTimeEnabled(g_ObjectiveSystem, 1);
