@@ -5,16 +5,16 @@
 #include <CGeneral.h>
 
 
-int cmdGarageClearAll(lua_State *pLuaState)
+int cmdGarageClearAll(lua_State *lua)
 {
   CGarages::RemoveAllGarages();
   return 0;
 }
 
-int cmdGarageAdd(lua_State *pLuaState)
+int cmdGarageAdd(lua_State *lua)
 {
-  int triggerID = LuaParam::GetInt(pLuaState, 0);
-  int pointlistID = LuaParam::GetInt(pLuaState, 1);
+  int triggerID = LuaParam::GetInt(lua, 0);
+  int pointlistID = LuaParam::GetInt(lua, 1);
   
   CTriggerManager *pTrigger = TriggerManager::GetTrigger(triggerID);
   
@@ -63,29 +63,29 @@ int cmdGarageAdd(lua_State *pLuaState)
   */
   
   int garageAdd = CGarages::Add(v1, v2, v3, v4, v5);
-  LuaParam::PushInt(pLuaState, garageAdd);
+  LuaParam::PushInt(lua, garageAdd);
   return 1;
 }
 
-int cmdGarageSetIsDeactivated(lua_State *pLuaState)
+int cmdGarageSetIsDeactivated(lua_State *lua)
 {
-  bool deactivate = LuaParam::GetBool(pLuaState, 0);
+  bool deactivate = LuaParam::GetBool(lua, 0);
   CGarages::SetAllIsDeactivated(deactivate);
   return 0;
 }
 
-int cmdGarageSetStoredVehicle(lua_State *pLuaState)
+int cmdGarageSetStoredVehicle(lua_State *lua)
 {
-  int garageIndex = LuaParam::GetInt(pLuaState, 0);
-  int modelID = LuaParam::GetInt(pLuaState, 1);
+  int garageIndex = LuaParam::GetInt(lua, 0);
+  int modelID = LuaParam::GetInt(lua, 1);
   CGarages::SetStoredVehicle(garageIndex, modelID);
   return 0;
 }
 
-int cmdGarageHasStoredVehicle(lua_State *pLuaState)
+int cmdGarageHasStoredVehicle(lua_State *lua)
 {
   bool bIsGarageEmpty = CGarages::IsGarageEmpty();
-  LuaParam::PushBool(pLuaState, !bIsGarageEmpty);
+  LuaParam::PushBool(lua, !bIsGarageEmpty);
   return 1;
 }
 	
